@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../AuthContext';
-import LoadingScreen from '../LoadingScreen/LoadingScreen'; // Import the LoadingOverlay component
-
+import LoadingScreen from '../LoadingScreen/LoadingScreen'; 
 
 const Login = () => {
     const [username, setUsername] = useState('');
@@ -10,7 +9,13 @@ const Login = () => {
     const [message, setMessage] = useState('');
     const [loading, setLoading] = useState(false); 
     const navigate = useNavigate();
-    const { login } = useAuth();
+    const { isAuthenticated, login } = useAuth();
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            navigate('/home'); 
+        }
+    }, [isAuthenticated, navigate]);
 
     const handleLogin = async () => {
         setLoading(true);
@@ -25,7 +30,7 @@ const Login = () => {
         const data = await response.json();
         setLoading(false);
         if (response.ok) {
-            const userRoles = data.roles; // Assume roles are returned from the server
+            const userRoles = data.roles; 
 
             login(username, userRoles);  
             navigate('/home'); 
