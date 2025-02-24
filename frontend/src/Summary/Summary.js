@@ -14,12 +14,21 @@ const Summary = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch(`${process.env.REACT_APP_API_BASE_URL}/api/Summary/userdetails`)
-            .then(response => response.json())
-            .then(data => {
-                setUserDetails(data)
-                setLoading(false);
+        const fetchData = async () => {
+            const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/Summary/userdetails`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-API-KEY': process.env.REACT_APP_API_KEY // Include the API key in the headers
+                }
             });
+
+            const data = await response.json();
+            setUserDetails(data);
+            setLoading(false);
+        };
+
+        fetchData();
     }, []);
 
     const sortedUserDetails = [...userDetails].sort((a, b) => {
