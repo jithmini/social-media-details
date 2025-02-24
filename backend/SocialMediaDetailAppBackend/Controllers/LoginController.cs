@@ -20,10 +20,15 @@ namespace SocialMediaDetailAppBackend.Controllers
 
         [HttpPost]
         public IActionResult Login([FromBody] LoginRequest loginRequest)
-        {            
-            if (_loginBL.ValidateUser(loginRequest.Username, loginRequest.Password))
+        {
+            var validationResult = _loginBL.ValidateUser(loginRequest.Username, loginRequest.Password);
+            if (validationResult.IsValid)
             {
-                return Ok(new { message = "Login Successful" });
+                return Ok(new
+                {
+                    message = "Login Successful",
+                    roles = validationResult.Roles
+                });
             }
             else
             {

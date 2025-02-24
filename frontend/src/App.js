@@ -8,6 +8,7 @@ import ProtectedRoute from './ProtectedRoute';
 import Layout from './Layouts/Layout';
 import NotFound from './Layouts/NotFound';
 import SessionTimeout from './SessionTimeout';
+import NotAuthorized from './Layouts/NotAuthorized';
 
 const App = () => {
     return (
@@ -20,7 +21,7 @@ const App = () => {
                             <Route
                                 path="/home"
                                 element={
-                                    <ProtectedRoute>
+                                    <ProtectedRoute requiredRoles={['Analyst']}>
                                         <Summary />
                                     </ProtectedRoute>
                                 }
@@ -28,11 +29,12 @@ const App = () => {
                             <Route
                                 path="/detail"
                                 element={
-                                    <ProtectedRoute>
+                                    <ProtectedRoute requiredRoles={['Admin']}>
                                         <Detail />
                                     </ProtectedRoute>
                                 }
                             />
+                            <Route path="/not-authorized" element={<NotAuthorized />} />
                             <Route path="/" element={<Login />} />
                             <Route path="*" element={<NotFound />} />              
                         </Routes>

@@ -2,19 +2,24 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '@fortawesome/fontawesome-free/css/all.min.css'; // Import Font Awesome CSS
 import '../App.css'; // Import the CSS file
+import LoadingScreen from '../LoadingScreen/LoadingScreen'; // Import the LoadingScreen component
 
 const Summary = () => {
     const [userDetails, setUserDetails] = useState([]);
     const [sortConfig, setSortConfig] = useState({ key: 'status', direction: 'ascending' });
     const [searchQuery, setSearchQuery] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
-    const [itemsPerPage] = useState(10); // Number of items per page
+    const [itemsPerPage] = useState(10); 
+    const [loading, setLoading] = useState(true); 
     const navigate = useNavigate();
 
     useEffect(() => {
         fetch(`${process.env.REACT_APP_API_BASE_URL}/api/Summary/userdetails`)
             .then(response => response.json())
-            .then(data => setUserDetails(data));
+            .then(data => {
+                setUserDetails(data)
+                setLoading(false);
+            });
     }, []);
 
     const sortedUserDetails = [...userDetails].sort((a, b) => {
@@ -54,6 +59,10 @@ const Summary = () => {
     const handlePageChange = (pageNumber) => {
         setCurrentPage(pageNumber);
     };
+
+    if (loading) {
+        return <LoadingScreen />; 
+    }
 
     return (
         <div className="container mt-5">

@@ -1,4 +1,5 @@
 ﻿using SocialMediaDetailAppBackend.DataLayer;
+using SocialMediaDetailAppBackend.Model;
 
 namespace SocialMediaDetailAppBackend.BusinessLayer
 {
@@ -11,10 +12,16 @@ namespace SocialMediaDetailAppBackend.BusinessLayer
             _loginDL = loginDL;
         }
 
-        public bool ValidateUser(string username, string password)
+        public UserValidationResult ValidateUser(string username, string password)
         {
-            var storedPasswordHash = _loginDL.GetPasswordHash(username);
-            return storedPasswordHash != null && BCrypt.Net.BCrypt.Verify(password, storedPasswordHash);
+            var userDetails = _loginDL.GetLoginUserDetails(username);
+            var isValid = userDetails.PasswordHash != null && BCrypt.Net.BCrypt.Verify(password, userDetails.PasswordHash);
+
+            return new UserValidationResult
+            {
+                IsValid = isValid,
+                Roles = isValid ? userDetails.Roles : new List<string>()
+            };
         }
 
         public bool RegisterUser(string username, string password)

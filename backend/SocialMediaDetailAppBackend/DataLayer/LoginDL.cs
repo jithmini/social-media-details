@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
+using SocialMediaDetailAppBackend.Model;
 
 namespace SocialMediaDetailAppBackend.DataLayer
 {
@@ -11,8 +12,11 @@ namespace SocialMediaDetailAppBackend.DataLayer
             _connectionString = connectionString;
         }
 
-        public string GetPasswordHash(string username)
+        public LoginUserDetails GetLoginUserDetails(string username)
         {
+            var userDetails = new LoginUserDetails();
+            userDetails.Roles = new List<string>();
+
             using (var connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
@@ -20,9 +24,23 @@ namespace SocialMediaDetailAppBackend.DataLayer
                 using (var command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@Username", username);
-                    return command.ExecuteScalar() as string;
+                    userDetails.PasswordHash = command.ExecuteScalar() as string;
+                }
+
+                var rolesQuery = "SELECT Role FROM role R INNER JOIN manual_user_role MR on MR.RoleId = R.RoleId INNER JOIN manual_user U ON U.UserId = MR.ManualUserId WHERE R.IsActive = 1 AND MR.IsActive = 1 AND U.IsActive=1 AND UPPER(U.Username) = UPPER(@Username)";
+                using (var command = new SqlCommand(rolesQuery, connection))
+                {
+                    command.Parameters.AddWithValue("@Username", username);
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            userDetails.Roles.Add(reader["Role"].ToString());
+                        }
+                    }
                 }
             }
+            return userDetails;
         }
 
         public bool RegisterUser(string username, string passwordHash)
