@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAuth } from '../AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 
 const Header = () => {
     const { username, logout } = useAuth();
@@ -11,10 +11,35 @@ const Header = () => {
         navigate('/login');
     };
 
+    const location = useLocation();
+    let headerText = 'SMD';
+
+    if (location.pathname === '/home') {
+        headerText = (
+            <>
+                SMD {'>'} <Link to="/home">HOME</Link>
+            </>
+        );
+    } else if (location.pathname === '/detail') {
+        headerText = (
+            <>
+                SMD {'>'} <Link to="/home">HOME</Link> {'>'} <Link to="/detail">USER DETAILS</Link>
+            </>
+        );
+    }
+
+    else if (location.pathname === '/not-authorized') {
+        headerText = (
+            <>
+                SMD {'>'} <Link to="/home">HOME</Link>
+            </>
+        );
+    }
+
     return (
         <header className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container">
-                <span className="navbar-brand">SMD</span>
+                <span className="navbar-brand">{headerText}</span>
                 <div className="collapse navbar-collapse justify-content-end">
                     {username && (
                         <ul className="navbar-nav">
