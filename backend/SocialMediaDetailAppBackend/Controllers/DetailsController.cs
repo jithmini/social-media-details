@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using SocialMediaDetailAppBackend.BusinessLayer;
 using SocialMediaDetailAppBackend.DataLayer;
+using SocialMediaDetailAppBackend.Model;
 
 namespace SocialMediaDetailAppBackend.Controllers
 {
@@ -16,6 +18,7 @@ namespace SocialMediaDetailAppBackend.Controllers
             var summaryDL = new DetailsDL(connectionString);
             _detailsBL = new DetailsBL(summaryDL);
         }
+
         [HttpGet("userdetails/{userId}")]
         public IActionResult GetUserDetailById(string userId)
         {
@@ -25,6 +28,43 @@ namespace SocialMediaDetailAppBackend.Controllers
                 return NotFound();
             }
             return Ok(userDetail);
+        }
+
+        [HttpGet("userapps/{userId}")]
+        public IActionResult GetUserApps(string userId)
+        {
+            var userApps = _detailsBL.GetUserApps(userId);
+            if (userApps == null || userApps.Count == 0)
+            {
+                return NotFound("No social media links found for this user.");
+            }
+            return Ok(userApps);
+        }
+
+        [HttpPost("updateDescription")]
+        public IActionResult AddDescription([FromBody] UserAppDescription description)
+        {
+            if (description == null || string.IsNullOrWhiteSpace(description.Description))
+            {
+                return BadRequest("Invalid input.");
+            }
+
+            bool success = _detailsBL.AddDescription(description);
+            return success ? Ok("Description added successfully.") : StatusCode(500, "Failed to add description.");
+        }
+
+        [HttpDelete("deleteDescription/{id}")]
+        public IActionResult DeleteDescription(int id)
+        {
+            bool success = _detailsBL.DeleteDescription(id);
+            return success ? Ok("Deleted successfully") : NotFound("Description not found.");
+        }
+
+        [HttpGet("getDescriptions/{userId}/{appName}")]
+        public IActionResult GetDescriptions(string userId, string appName)
+        {
+            var descriptions = _detailsBL.GetDescriptions(userId, appName);
+            return descriptions.Count > 0 ? Ok(descriptions) : NotFound("No descriptions found.");
         }
     }
 }

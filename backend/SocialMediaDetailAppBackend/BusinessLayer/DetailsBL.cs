@@ -15,5 +15,25 @@ namespace SocialMediaDetailAppBackend.BusinessLayer
         {
             return _detailsDL.GetUserDetailById(userId);
         }
+
+        public List<UserAppDetail> GetUserApps(string userId)
+        {
+            return _detailsDL.GetUserApps(userId);
+        }
+
+        public bool AddDescription(UserAppDescription description)
+        {
+            return _detailsDL.AddDescription(description);
+        }
+
+        public List<UserAppDescription> GetDescriptions(string userId, string appName)
+        {
+            return _detailsDL.GetDescriptions(userId, appName);
+        }
+
+        public bool DeleteDescription(int id)
+        {
+            return _detailsDL.DeleteDescription(id);
+        }
     }
 }

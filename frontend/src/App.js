@@ -9,6 +9,7 @@ import Layout from './Layouts/Layout';
 import NotFound from './Layouts/NotFound';
 import SessionTimeout from './SessionTimeout';
 import NotAuthorized from './Layouts/NotAuthorized';
+import UpdateDescription from './Detail/UpdateDescription';
 
 const App = () => {
     return (
@@ -33,6 +34,12 @@ const App = () => {
                                         <Detail />
                                     </ProtectedRoute>
                                 }
+                            />
+                            <Route 
+                                path="/update-description" 
+                                element={
+                                    <UpdateDescription />
+                                } 
                             />
                             <Route path="/not-authorized" element={<NotAuthorized />} />
                             <Route path="/" element={<Login />} />
