@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import LoadingScreen from '../LoadingScreen/LoadingScreen';
 
 const UpdateDescription = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const { userId, app } = location.state || {};
-    
+    const [loading, setLoading] = useState(true); 
     const [description, setDescription] = useState("");
-    const [descriptions, setDescriptions] = useState([]);
+    const [descriptionList, setDescriptions] = useState([]);
     const [isSubmitted, setIsSubmitted] = useState(
         localStorage.getItem(`submissionStatus_${userId}_${app.appId}`) === "submitted"
     );
@@ -25,6 +26,7 @@ const UpdateDescription = () => {
                     }
                 }
             );
+            setLoading(false);
             if (response.ok) {
                 const data = await response.json();
                 setDescriptions(data);
@@ -57,6 +59,7 @@ const UpdateDescription = () => {
                 body: JSON.stringify({ userId, appId: app.appId, description }),
             });
 
+            
             if (response.ok) {
                 alert("Description added successfully!");
                 setDescription("");
@@ -71,11 +74,26 @@ const UpdateDescription = () => {
     };
 
     // Submit descriptions (Final action)
-    const handleSubmit = () => {
-        setIsSubmitted(true);
-        localStorage.setItem(`submissionStatus_${userId}_${app.appId}`, "submitted");
-        alert("Submission successful!");
-        navigate(-1); // Go back to Detail page
+    const handleSubmit = async () => {
+        // setIsSubmitted(true);
+        // localStorage.setItem(`submissionStatus_${userId}_${app.appId}`, "submitted");
+
+        if (descriptionList.length > 0){
+            
+            const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/Details/updateUserAppStatus`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-API-KEY": process.env.REACT_APP_API_KEY
+                },
+                body: JSON.stringify({ userId, appId: app.appId, description }),
+            });
+            navigate(-1);
+        }
+        else{
+            alert("No data to submit!");
+        }
+        
     };
 
     // Delete description
@@ -103,6 +121,10 @@ const UpdateDescription = () => {
         }
     };
 
+    if (loading) {
+        return <LoadingScreen />; 
+    }
+
     return (
         <div className="container mt-5">
             <h2>Hate Speech Entry Form</h2>
@@ -116,14 +138,14 @@ const UpdateDescription = () => {
                 onChange={(e) => setDescription(e.target.value)}
             />
             <div className="mt-3">
-                <button className="a" onClick={handleSubmitDescription} disabled={isSubmitted}>
+                <button className="btn btn-secondary mt-3 ms-2" onClick={handleSubmitDescription} disabled={isSubmitted}>
                     Add
                 </button>
             </div>
 
             {/* Display added descriptions */}
             <h3 className="mt-4">Added Hate Speeches</h3>
-            {descriptions.length > 0 ? (
+            {descriptionList.length > 0 ? (
                 <table className="table mt-3">
                     <thead>
                         <tr>
@@ -132,13 +154,16 @@ const UpdateDescription = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {descriptions.map((desc) => (
+                        {descriptionList.map((desc) => (
                             <tr key={desc.id}>
                                 <td>{desc.description}</td>
-                                <td>
+                                {/* <td>
                                     <button className="bt" onClick={() => handleDeleteDescription(desc.id)} disabled={isSubmitted}>
                                         Delete
                                     </button>
+                                </td> */}
+                                <td className="text-center">
+                                    <i className="fa fa-times" style={{ cursor: 'pointer', color: 'red' }} onClick={() => handleDeleteDescription(desc.id)} disabled={isSubmitted}></i>
                                 </td>
                             </tr>
                         ))}
@@ -148,8 +173,8 @@ const UpdateDescription = () => {
                 <p>No Hate Speeches found.</p>
             )}
             
-            <button className="floating-button" onClick={() => navigate(-1)}>Back</button>
-            <button onClick={handleSubmit} disabled={isSubmitted}>Submit</button>
+            <button className="btn btn-secondary mt-3 ms-2" onClick={() => navigate(-1)}>Back</button>
+            <button className="btn btn-secondary mt-3 ms-2" onClick={handleSubmit} disabled={isSubmitted}>Submit</button>
         </div>
     );
 };

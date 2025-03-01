@@ -66,5 +66,13 @@ namespace SocialMediaDetailAppBackend.Controllers
             var descriptions = _detailsBL.GetDescriptions(userId, appName);
             return descriptions.Count > 0 ? Ok(descriptions) : NotFound("No descriptions found.");
         }
+
+        [HttpPost("updateUserAppStatus")]
+        public IActionResult updateUserAppStatus([FromBody] UserAppDescription description)
+        {
+
+            bool success = _detailsBL.updateUserAppStatus(description);
+            return success ? Ok("Status updated successfully.") : StatusCode(500, "Failed to update status.");
+        }
     }
 }

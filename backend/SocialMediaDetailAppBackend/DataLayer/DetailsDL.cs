@@ -1,5 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 using SocialMediaDetailAppBackend.Model;
+using System.Data;
 
 namespace SocialMediaDetailAppBackend.DataLayer
 {
@@ -48,7 +49,7 @@ namespace SocialMediaDetailAppBackend.DataLayer
             {
                 connection.Open();
                 var query = @"
-            SELECT ua.link, a.app_name, a.app_id
+            SELECT ua.link, a.app_name, a.app_id, ISNULL(ua.status,0)
             FROM user_app ua
             INNER JOIN app_table a ON ua.app_id = a.app_id
             WHERE ua.user_id = @UserId";
@@ -66,6 +67,7 @@ namespace SocialMediaDetailAppBackend.DataLayer
                                 Link = reader.GetString(0),
                                 AppName = reader.GetString(1),
                                 AppId = reader.GetString(2),
+                                Status = reader.GetBoolean(3)
                             });
                         }
                     }
@@ -86,6 +88,39 @@ namespace SocialMediaDetailAppBackend.DataLayer
                 cmd.Parameters.AddWithValue("@Description", description.Description);
 
                 con.Open();
+                return cmd.ExecuteNonQuery() > 0;
+            }
+        }
+
+        //public bool updateUserAppStatus(UserAppDescription description)
+        //{
+        //    using (SqlConnection con = new SqlConnection(_connectionString))
+        //    {
+        //        string query = "UPDATE user_app SET status=1 WHERE user_id = @UserId AND app_id = @AppId ";
+        //        SqlCommand cmd = new SqlCommand(query, con);
+        //        cmd.Parameters.AddWithValue("@UserId", description.UserId);
+        //        cmd.Parameters.AddWithValue("@AppId", description.AppId);
+
+
+        //        con.Open();
+        //        return cmd.ExecuteNonQuery() > 0;
+        //    }
+        //}
+
+        public bool updateUserAppStatus(UserAppDescription description)
+        {
+            using (SqlConnection con = new SqlConnection(_connectionString))
+            {
+                string storedProcedure = "SP_UPDATE_USERAPP_STATUS";
+
+                SqlCommand cmd = new SqlCommand(storedProcedure, con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@UserId", description.UserId);
+                cmd.Parameters.AddWithValue("@AppId", description.AppId);
+
+                con.Open();
+
                 return cmd.ExecuteNonQuery() > 0;
             }
         }

@@ -26,6 +26,11 @@ namespace SocialMediaDetailAppBackend.BusinessLayer
             return _detailsDL.AddDescription(description);
         }
 
+        public bool updateUserAppStatus(UserAppDescription description)
+        {
+            return _detailsDL.updateUserAppStatus(description);
+        }
+
         public List<UserAppDescription> GetDescriptions(string userId, string appName)
         {
             return _detailsDL.GetDescriptions(userId, appName);
