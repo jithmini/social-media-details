@@ -9,8 +9,8 @@ export const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true); // Add loading state
 
     useEffect(() => {
-        const storedUser = localStorage.getItem('username');
-        const storedRoles = localStorage.getItem('roles');
+        const storedUser = sessionStorage.getItem('username');
+        const storedRoles = sessionStorage.getItem('roles');
         if (storedUser && storedRoles) {
             setIsAuthenticated(true);
             setUsername(storedUser);
@@ -24,8 +24,8 @@ export const AuthProvider = ({ children }) => {
         setUsername(user);
         setRoles(userRoles);
 
-        localStorage.setItem('username', user);
-        localStorage.setItem('roles', JSON.stringify(userRoles));
+        sessionStorage.setItem('username', user);
+        sessionStorage.setItem('roles', JSON.stringify(userRoles));
     };
 
     const logout = () => {
@@ -33,8 +33,8 @@ export const AuthProvider = ({ children }) => {
         setUsername('');
         setRoles([]);
 
-        localStorage.removeItem('username');
-        localStorage.removeItem('roles');
+        sessionStorage.removeItem('username');
+        sessionStorage.removeItem('roles');
     };
 
     return (
