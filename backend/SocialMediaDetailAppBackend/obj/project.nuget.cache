@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "KZUCa73CqGbdleQchdN4EEIJtc9/QLWV6SSMcYRYZsE//2Gp/P52yDIb3xvSDC+els5YVn/uI2+xB1/fgWPApQ==",
+  "dgSpecHash": "XOFm7tyh7m9Gl2OXZN7g0pSRleOfaWS9B6gWSzZEbfH6/4LVoJp/4kOTj00GOzx7lau1OqXjQpVYsASkKXZAiQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\dasun\\OneDrive\\Desktop\\Arithmos\\social-media-details\\backend\\SocialMediaDetailAppBackend\\SocialMediaDetailAppBackend.csproj",
+  "projectFilePath": "C:\\Users\\dasun\\OneDrive\\Desktop\\Arithmos\\Project MVP\\social-media-details\\backend\\SocialMediaDetailAppBackend\\SocialMediaDetailAppBackend.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\dasun\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\dasun\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",

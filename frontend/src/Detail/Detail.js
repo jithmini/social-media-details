@@ -52,8 +52,10 @@ const Detail = () => {
                 }
             } catch (error) {
                 console.error("Error fetching data:", error);
+                setUserApps([]);
             } finally {
                 setIsLoading(false);
+                setLoading(false);
             }
         };
 
@@ -102,7 +104,7 @@ const Detail = () => {
                             </div>
                             <div class="col-sm-2">
                             <button
-                                className="btn btn-secondary mt-3 ms-2"
+                                className="btn btn-secondary mb-2"
                                 onClick={() => handleAddDescription(app)}
                                 disabled={app.status}
                             >
