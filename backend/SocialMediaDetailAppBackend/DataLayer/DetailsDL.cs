@@ -52,7 +52,9 @@ namespace SocialMediaDetailAppBackend.DataLayer
             SELECT ua.link, a.app_name, a.app_id, ISNULL(ua.status,0)
             FROM user_app ua
             INNER JOIN app_table a ON ua.app_id = a.app_id
-            WHERE ua.user_id = @UserId";
+            WHERE ua.user_id = @UserId
+            AND ua.link IS NOT NULL
+            AND LTRIM(RTRIM(ua.link)) <> ''";
 
                 using (var command = new SqlCommand(query, connection))
                 {
@@ -81,31 +83,17 @@ namespace SocialMediaDetailAppBackend.DataLayer
         {
             using (SqlConnection con = new SqlConnection(_connectionString))
             {
-                string query = "INSERT INTO user_app_des (user_id, app_id, description) VALUES (@UserId, @AppId, @Description)";
+                string query = "INSERT INTO user_app_des (user_id, app_id, description, post_link) VALUES (@UserId, @AppId, @Description, @PostLink)";
                 SqlCommand cmd = new SqlCommand(query, con);
                 cmd.Parameters.AddWithValue("@UserId", description.UserId);
                 cmd.Parameters.AddWithValue("@AppId", description.AppId);
                 cmd.Parameters.AddWithValue("@Description", description.Description);
+                cmd.Parameters.AddWithValue("@PostLink", description.PostLink);
 
                 con.Open();
                 return cmd.ExecuteNonQuery() > 0;
             }
         }
-
-        //public bool updateUserAppStatus(UserAppDescription description)
-        //{
-        //    using (SqlConnection con = new SqlConnection(_connectionString))
-        //    {
-        //        string query = "UPDATE user_app SET status=1 WHERE user_id = @UserId AND app_id = @AppId ";
-        //        SqlCommand cmd = new SqlCommand(query, con);
-        //        cmd.Parameters.AddWithValue("@UserId", description.UserId);
-        //        cmd.Parameters.AddWithValue("@AppId", description.AppId);
-
-
-        //        con.Open();
-        //        return cmd.ExecuteNonQuery() > 0;
-        //    }
-        //}
 
         public bool updateUserAppStatus(UserAppDescription description)
         {

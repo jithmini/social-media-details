@@ -34,7 +34,7 @@ namespace SocialMediaDetailAppBackend.Controllers
         public IActionResult GetUserApps(string userId)
         {
             var userApps = _detailsBL.GetUserApps(userId);
-            if (userApps == null || userApps.Count == 0)
+            if (userApps == null || userApps.Count == 0 || !userApps.Any())
             {
                 return NotFound("No social media links found for this user.");
             }

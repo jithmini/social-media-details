@@ -8,6 +8,7 @@ const UpdateDescription = () => {
     const { userId, app } = location.state || {};
     const [loading, setLoading] = useState(true); 
     const [description, setDescription] = useState("");
+    const [postLink, setPostLink] = useState("");
     const [descriptionList, setDescriptions] = useState([]);
     const [isSubmitted, setIsSubmitted] = useState(
         localStorage.getItem(`submissionStatus_${userId}_${app.appId}`) === "submitted"
@@ -56,13 +57,14 @@ const UpdateDescription = () => {
                     "Content-Type": "application/json",
                     "X-API-KEY": process.env.REACT_APP_API_KEY
                 },
-                body: JSON.stringify({ userId, appId: app.appId, description }),
+                body: JSON.stringify({ userId, appId: app.appId, description, postLink }),
             });
 
             
             if (response.ok) {
                 alert("Description added successfully!");
                 setDescription("");
+                setPostLink("");
                 fetchDescriptions();
             } else {
                 alert("Failed to add description.");
@@ -86,7 +88,7 @@ const UpdateDescription = () => {
                     "Content-Type": "application/json",
                     "X-API-KEY": process.env.REACT_APP_API_KEY
                 },
-                body: JSON.stringify({ userId, appId: app.appId, description }),
+                body: JSON.stringify({ userId, appId: app.appId, description, postLink }),
             });
             navigate(-1);
         }
@@ -137,6 +139,14 @@ const UpdateDescription = () => {
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
             />
+            <textarea
+                className="form-control mt-2"
+                rows="2"
+                placeholder="Enter post link..."
+                value={postLink}
+                onChange={(e) => setPostLink(e.target.value)}
+            />
+
             <div className="mt-3">
                 <button className="btn btn-secondary mt-3 ms-2" onClick={handleSubmitDescription} disabled={isSubmitted}>
                     Add

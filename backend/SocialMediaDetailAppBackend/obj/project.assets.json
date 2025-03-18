@@ -2152,11 +2152,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\dasun\\OneDrive\\Desktop\\Arithmos\\social-media-details\\backend\\SocialMediaDetailAppBackend\\SocialMediaDetailAppBackend.csproj",
+      "projectUniqueName": "C:\\Users\\dasun\\OneDrive\\Desktop\\Arithmos\\Project MVP\\social-media-details\\backend\\SocialMediaDetailAppBackend\\SocialMediaDetailAppBackend.csproj",
       "projectName": "SocialMediaDetailAppBackend",
-      "projectPath": "C:\\Users\\dasun\\OneDrive\\Desktop\\Arithmos\\social-media-details\\backend\\SocialMediaDetailAppBackend\\SocialMediaDetailAppBackend.csproj",
+      "projectPath": "C:\\Users\\dasun\\OneDrive\\Desktop\\Arithmos\\Project MVP\\social-media-details\\backend\\SocialMediaDetailAppBackend\\SocialMediaDetailAppBackend.csproj",
       "packagesPath": "C:\\Users\\dasun\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\dasun\\OneDrive\\Desktop\\Arithmos\\social-media-details\\backend\\SocialMediaDetailAppBackend\\obj\\",
+      "outputPath": "C:\\Users\\dasun\\OneDrive\\Desktop\\Arithmos\\Project MVP\\social-media-details\\backend\\SocialMediaDetailAppBackend\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\dasun\\AppData\\Roaming\\NuGet\\NuGet.Config",
