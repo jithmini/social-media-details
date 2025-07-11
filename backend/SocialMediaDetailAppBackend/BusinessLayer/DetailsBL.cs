@@ -1,5 +1,9 @@
 ﻿using SocialMediaDetailAppBackend.DataLayer;
 using SocialMediaDetailAppBackend.Model;
+using System.Net.Http.Headers;
+using System.Text;
+using Newtonsoft.Json;
+using System.Net.Http;
 
 namespace SocialMediaDetailAppBackend.BusinessLayer
 {
@@ -26,7 +30,7 @@ namespace SocialMediaDetailAppBackend.BusinessLayer
             return _detailsDL.AddDescription(description);
         }
 
-        public bool updateUserAppStatus(UserAppDescription description)
+        public bool updateUserAppStatus(SubmitDescription description)
         {
             return _detailsDL.updateUserAppStatus(description);
         }
@@ -40,5 +44,15 @@ namespace SocialMediaDetailAppBackend.BusinessLayer
         {
             return _detailsDL.DeleteDescription(id);
         }
+
+        public bool SendWebhookAcceptAsync(WebhookPayload payload)
+        {
+            return _detailsDL.SendWebhookAccept(payload);
+        }
+        public bool SendWebhookRejectAsync(WebhookPayload payload)
+        {
+            return _detailsDL.SendWebhookReject(payload);
+        }
+
     }
 }

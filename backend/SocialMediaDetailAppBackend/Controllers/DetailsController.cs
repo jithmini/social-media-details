@@ -15,7 +15,7 @@ namespace SocialMediaDetailAppBackend.Controllers
         public DetailsController(IConfiguration configuration)
         {
             var connectionString = configuration.GetConnectionString("DefaultConnection");
-            var summaryDL = new DetailsDL(connectionString);
+            var summaryDL = new DetailsDL(connectionString, new HttpClient());
             _detailsBL = new DetailsBL(summaryDL);
         }
 
@@ -68,11 +68,29 @@ namespace SocialMediaDetailAppBackend.Controllers
         }
 
         [HttpPost("updateUserAppStatus")]
-        public IActionResult updateUserAppStatus([FromBody] UserAppDescription description)
+        public IActionResult updateUserAppStatus([FromBody] SubmitDescription description)
         {
 
             bool success = _detailsBL.updateUserAppStatus(description);
             return success ? Ok("Status updated successfully.") : StatusCode(500, "Failed to update status.");
+        }
+
+        [HttpPost("send-webhook-accept")]
+        public IActionResult SendWebhookAccept([FromBody] WebhookPayload payload)
+        {
+            bool success = _detailsBL.SendWebhookAcceptAsync(payload);
+            return success
+                ? Ok("Webhook sent successfully.")
+                : StatusCode(500, "Failed to send webhook.");
+        }
+
+        [HttpPost("send-webhook-reject")]
+        public IActionResult SendWebhookReject([FromBody] WebhookPayload payload)
+        {
+            bool success = _detailsBL.SendWebhookRejectAsync(payload);
+            return success
+                ? Ok("Webhook sent successfully.")
+                : StatusCode(500, "Failed to send webhook.");
         }
     }
 }

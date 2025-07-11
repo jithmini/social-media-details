@@ -238,3 +238,4 @@ C:\Users\dasun\OneDrive\Desktop\Arithmos\Project MVP\social-media-details\backen
 C:\Users\dasun\OneDrive\Desktop\Arithmos\Project MVP\social-media-details\backend\SocialMediaDetailAppBackend\obj\Debug\net8.0\SocialMediaDetailAppBackend.pdb
 C:\Users\dasun\OneDrive\Desktop\Arithmos\Project MVP\social-media-details\backend\SocialMediaDetailAppBackend\obj\Debug\net8.0\SocialMediaDetailAppBackend.genruntimeconfig.cache
 C:\Users\dasun\OneDrive\Desktop\Arithmos\Project MVP\social-media-details\backend\SocialMediaDetailAppBackend\obj\Debug\net8.0\ref\SocialMediaDetailAppBackend.dll
+C:\Users\dasun\OneDrive\Desktop\Arithmos\Project MVP\social-media-details\backend\SocialMediaDetailAppBackend\bin\Debug\net8.0\Newtonsoft.Json.dll

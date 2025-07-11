@@ -80,6 +80,8 @@ const UpdateDescription = () => {
         // setIsSubmitted(true);
         // localStorage.setItem(`submissionStatus_${userId}_${app.appId}`, "submitted");
 
+        if (!window.confirm("If you click OK, then you can’t edit later. Are you sure?")) return;
+        
         if (descriptionList.length > 0){
             
             const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/Details/updateUserAppStatus`, {
@@ -184,7 +186,7 @@ const UpdateDescription = () => {
             )}
             
             <button className="btn btn-secondary mt-3 ms-2" onClick={() => navigate(-1)}>Back</button>
-            <button className="btn btn-secondary mt-3 ms-2" onClick={handleSubmit} disabled={isSubmitted}>Submit</button>
+            {/* <button className="btn btn-secondary mt-3 ms-2" onClick={handleSubmit} disabled={isSubmitted}>Submit</button> */}
         </div>
     );
 };

@@ -12,18 +12,18 @@ const Header = () => {
     };
 
     const location = useLocation();
-    let headerText = 'SMD';
+    let headerText = <Link to="/home">SMD</Link>;
 
     if (location.pathname === '/home') {
         headerText = (
             <>
-                SMD {'>'} <Link to="/home">HOME</Link>
+                <Link to="/home">SMD</Link> {'>'} <Link to="/home">HOME</Link>
             </>
         );
     } else if (location.pathname === '/detail') {
         headerText = (
             <>
-                SMD {'>'} <Link to="/home">HOME</Link> {'>'} <Link to="/detail">USER DETAILS</Link>
+                <Link to="/home">SMD</Link> {'>'} <Link to="/home">HOME</Link> {'>'} <Link to="/detail">USER DETAILS</Link>
             </>
         );
     }
@@ -31,7 +31,7 @@ const Header = () => {
     else if (location.pathname === '/not-authorized') {
         headerText = (
             <>
-                SMD {'>'} <Link to="/home">HOME</Link>
+                <Link to="/home">SMD</Link> {'>'} <Link to="/home">HOME</Link>
             </>
         );
     }
