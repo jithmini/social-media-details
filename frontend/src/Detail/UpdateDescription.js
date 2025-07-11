@@ -186,7 +186,7 @@ const UpdateDescription = () => {
             )}
             
             <button className="btn btn-secondary mt-3 ms-2" onClick={() => navigate(-1)}>Back</button>
-            <button className="btn btn-secondary mt-3 ms-2" onClick={handleSubmit} disabled={isSubmitted}>Submit</button>
+            {/* <button className="btn btn-secondary mt-3 ms-2" onClick={handleSubmit} disabled={isSubmitted}>Submit</button> */}
         </div>
     );
 };

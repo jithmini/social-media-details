@@ -1,4 +1,5 @@
 using Microsoft.OpenApi.Models;
+using SocialMediaDetailAppBackend.BusinessLayer;
 using SocialMediaDetailAppBackend.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
