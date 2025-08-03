@@ -6,7 +6,7 @@ const UpdateDescription = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const { userId, app } = location.state || {};
-    const [loading, setLoading] = useState(true); 
+    const [loading, setLoading] = useState(true);
     const [description, setDescription] = useState("");
     const [postLink, setPostLink] = useState("");
     const [descriptionList, setDescriptions] = useState([]);
@@ -14,11 +14,25 @@ const UpdateDescription = () => {
         localStorage.getItem(`submissionStatus_${userId}_${app.appId}`) === "submitted"
     );
 
-    // Fetch existing descriptions
+    // 🧠 Helper to get base URL for each app
+    const getBaseUrl = (appName) => {
+        const map = {
+            Facebook: "facebook.com",
+            Twitter: "twitter.com",
+            Instagram: "instagram.com",
+            LinkedIn: "linkedin.com/in",
+            TikTok: "tiktok.com/@",
+            YouTube: "youtube.com/@"
+            // Add other platforms if needed
+        };
+        return map[appName] || "";
+    };
+
+    // 📦 Fetch existing descriptions
     const fetchDescriptions = async () => {
         try {
             const response = await fetch(
-                `${process.env.REACT_APP_API_BASE_URL}/api/Details/getDescriptions/${userId}/${app.appId}`,
+                `${process.env.REACT_APP_API_BASE_URL}api/Details/getDescriptions/${userId}/${app.appId}`,
                 {
                     method: 'GET',
                     headers: {
@@ -43,24 +57,33 @@ const UpdateDescription = () => {
         fetchDescriptions();
     }, []);
 
-    // Add new description
+    // ✏️ Add new description
     const handleSubmitDescription = async () => {
         if (!description.trim()) {
             alert("Please enter a description.");
             return;
         }
 
+        // 👇 Add full URL if only ID/handle is provided
+        const finalPostLink = postLink.startsWith("http")
+            ? postLink
+            : `https://${getBaseUrl(app.appName)}/${postLink}`;
+
         try {
-            const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/Details/updateDescription`, {
+            const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}api/Details/updateDescription`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                     "X-API-KEY": process.env.REACT_APP_API_KEY
                 },
-                body: JSON.stringify({ userId, appId: app.appId, description, postLink }),
+                body: JSON.stringify({
+                    userId,
+                    appId: app.appId,
+                    description,
+                    postLink: finalPostLink
+                }),
             });
 
-            
             if (response.ok) {
                 alert("Description added successfully!");
                 setDescription("");
@@ -75,16 +98,12 @@ const UpdateDescription = () => {
         }
     };
 
-    // Submit descriptions (Final action)
+    // ✅ Final Submit
     const handleSubmit = async () => {
-        // setIsSubmitted(true);
-        // localStorage.setItem(`submissionStatus_${userId}_${app.appId}`, "submitted");
-
         if (!window.confirm("If you click OK, then you can’t edit later. Are you sure?")) return;
-        
-        if (descriptionList.length > 0){
-            
-            const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/Details/updateUserAppStatus`, {
+
+        if (descriptionList.length > 0) {
+            const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}api/Details/updateUserAppStatus`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -93,19 +112,17 @@ const UpdateDescription = () => {
                 body: JSON.stringify({ userId, appId: app.appId, description, postLink }),
             });
             navigate(-1);
-        }
-        else{
+        } else {
             alert("No data to submit!");
         }
-        
     };
 
-    // Delete description
+    // ❌ Delete description
     const handleDeleteDescription = async (id) => {
         if (!window.confirm("Are you sure you want to delete this description?")) return;
 
         try {
-            const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/Details/deleteDescription/${id}`, {
+            const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}api/Details/deleteDescription/${id}`, {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
@@ -126,14 +143,14 @@ const UpdateDescription = () => {
     };
 
     if (loading) {
-        return <LoadingScreen />; 
+        return <LoadingScreen />;
     }
 
     return (
         <div className="container mt-5">
             <h2>Hate Speech Entry Form</h2>
             <h5>Application: {app?.appName}</h5>
-            
+
             <textarea
                 className="form-control"
                 rows="4"
@@ -144,18 +161,22 @@ const UpdateDescription = () => {
             <textarea
                 className="form-control mt-2"
                 rows="2"
-                placeholder="Enter post link..."
+                placeholder={`Enter ${app?.appName} ID or full link...`}
                 value={postLink}
                 onChange={(e) => setPostLink(e.target.value)}
             />
 
             <div className="mt-3">
-                <button className="btn btn-secondary mt-3 ms-2" onClick={handleSubmitDescription} disabled={isSubmitted}>
+                <button
+                    className="btn btn-secondary mt-3 ms-2"
+                    onClick={handleSubmitDescription}
+                    disabled={isSubmitted}
+                >
                     Add
                 </button>
             </div>
 
-            {/* Display added descriptions */}
+            {/* 🔽 Display descriptions */}
             <h3 className="mt-4">Added Hate Speeches</h3>
             {descriptionList.length > 0 ? (
                 <table className="table mt-3">
@@ -169,13 +190,13 @@ const UpdateDescription = () => {
                         {descriptionList.map((desc) => (
                             <tr key={desc.id}>
                                 <td>{desc.description}</td>
-                                {/* <td>
-                                    <button className="bt" onClick={() => handleDeleteDescription(desc.id)} disabled={isSubmitted}>
-                                        Delete
-                                    </button>
-                                </td> */}
                                 <td className="text-center">
-                                    <i className="fa fa-times" style={{ cursor: 'pointer', color: 'red' }} onClick={() => handleDeleteDescription(desc.id)} disabled={isSubmitted}></i>
+                                    <i
+                                        className="fa fa-times"
+                                        style={{ cursor: 'pointer', color: 'red' }}
+                                        onClick={() => handleDeleteDescription(desc.id)}
+                                        disabled={isSubmitted}
+                                    ></i>
                                 </td>
                             </tr>
                         ))}
@@ -184,9 +205,13 @@ const UpdateDescription = () => {
             ) : (
                 <p>No Hate Speeches found.</p>
             )}
-            
-            <button className="btn btn-secondary mt-3 ms-2" onClick={() => navigate(-1)}>Back</button>
-            {/* <button className="btn btn-secondary mt-3 ms-2" onClick={handleSubmit} disabled={isSubmitted}>Submit</button> */}
+
+            <button
+                className="btn btn-secondary mt-3 ms-2"
+                onClick={() => navigate(-1)}
+            >
+                Back
+            </button>
         </div>
     );
 };

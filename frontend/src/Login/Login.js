@@ -19,7 +19,7 @@ const Login = () => {
 
     const handleLogin = async () => {
         setLoading(true);
-        const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/Login`, {
+        const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}api/Login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

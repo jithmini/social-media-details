@@ -6,7 +6,7 @@ import LoadingScreen from '../LoadingScreen/LoadingScreen'; // Import the Loadin
 
 const Summary = () => {
     const [userDetails, setUserDetails] = useState([]);
-    const [sortConfig, setSortConfig] = useState({ key: 'status', direction: 'ascending' });
+    const [sortConfig, setSortConfig] = useState({ key: 'createdDate', direction: 'dcending' });
     const [searchQuery, setSearchQuery] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage] = useState(10); 
@@ -15,7 +15,7 @@ const Summary = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/Summary/userdetails`, {
+            const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}api/Summary/userdetails`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -50,9 +50,7 @@ const Summary = () => {
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
     const currentItems = filteredUserDetails.slice(indexOfFirstItem, indexOfLastItem);
-
     const totalPages = Math.ceil(filteredUserDetails.length / itemsPerPage);
-
     const requestSort = key => {
         let direction = 'ascending';
         if (sortConfig.key === key && sortConfig.direction === 'ascending') {
@@ -68,7 +66,7 @@ const Summary = () => {
     const handlePageChange = (pageNumber) => {
         setCurrentPage(pageNumber);
     };
-
+    
     if (loading) {
         return <LoadingScreen />; 
     }
@@ -92,8 +90,12 @@ const Summary = () => {
                     <tr>
                         <th className="text-center">Full Name</th>
                         <th className="text-center">Title</th>
-                        <th className="text-center" onClick={() => requestSort('status')} style={{ cursor: 'pointer' }}>
-                            Status {sortConfig.key === 'status' && (sortConfig.direction === 'ascending' ? '▲' : '▼')}
+                        <th className='text-center'>Auto Status</th>
+                        <th className="text-center" >
+                            Manual Status 
+                        </th>
+                        <th className="text-center" onClick={() => requestSort('createdDate')} style={{ cursor: 'pointer' }}>
+                            Created Date {sortConfig.key === 'createdDate' && (sortConfig.direction === 'ascending' ? '▲' : '▼')}
                         </th>
                         <th className="text-center">Action</th>
                     </tr>
@@ -103,7 +105,9 @@ const Summary = () => {
                         <tr key={user.userId}>
                             <td className="text-center">{user.fullName}</td>
                             <td className="text-center">{user.title}</td>
-                            <td className="text-center">{user.status ? 'Submitted' : 'Pending'}</td>
+                            <td className='text-center'>{user.autoStatus == 1 ? 'Rejected' : user.autoStatus == 2 ? 'Accepted' : 'Pending' }</td>
+                            <td className="text-center">{user.manualStatus ? 'Submitted' : 'Pending'}</td>
+                            <td className='text-center'>{user.createdDate}</td>
                             <td className="text-center">
                                 <i className="fas fa-eye" style={{ cursor: 'pointer' }} onClick={() => handleViewClick(user.userId)}></i>
                             </td>
