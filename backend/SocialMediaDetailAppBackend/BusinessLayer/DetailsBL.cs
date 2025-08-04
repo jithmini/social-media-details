@@ -45,14 +45,43 @@ namespace SocialMediaDetailAppBackend.BusinessLayer
             return _detailsDL.DeleteDescription(id);
         }
 
-        public bool SendWebhookAcceptAsync(WebhookPayload payload)
+        //public bool SendWebhookAcceptAsync(WebhookPayload payload)
+        //{
+        //    return _detailsDL.SendWebhookAccept(payload);
+        //}
+        //public bool SendWebhookRejectAsync(WebhookPayload payload)
+        //{
+        //    return _detailsDL.SendWebhookReject(payload);
+        //}
+
+        public List<String> GetAllLinks(String id)
         {
-            return _detailsDL.SendWebhookAccept(payload);
-        }
-        public bool SendWebhookRejectAsync(WebhookPayload payload)
-        {
-            return _detailsDL.SendWebhookReject(payload);
+            return _detailsDL.GetAllLinks(id);
         }
 
+        public List<FlaggedLinkDetail> GetFlaggedLinksWithDetails(string userId)
+        {
+            return _detailsDL.GetFlaggedLinksWithDetails(userId);
+        }
+
+        public bool DeleteAutomatedLink(string userId, string link)
+        {
+            return _detailsDL.DeleteAutomatedLink(userId, link);
+        }
+
+        public bool UpdateReasoning(UpdateReasoningRequest request)
+        {
+            return _detailsDL.UpdateReasoning(request);
+        }
+
+
+        public async Task<WebhookResult> SendWebhookAsync(string userId, string result)
+        {
+            return await _detailsDL.SendWebhookAsync(userId, result);
+        }
+
+
     }
+
+
 }

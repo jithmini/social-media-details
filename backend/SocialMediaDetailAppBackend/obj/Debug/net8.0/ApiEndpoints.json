@@ -1,6 +1,171 @@
 [
   {
     "ContainingType": "SocialMediaDetailAppBackend.Controllers.DetailsController",
+    "Method": "GetAutomatedLinks",
+    "RelativePath": "api/Details/automated-links/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SocialMediaDetailAppBackend.Controllers.DetailsController",
+    "Method": "DeleteAutomatedLink",
+    "RelativePath": "api/Details/delete-automated-link",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "SocialMediaDetailAppBackend.Model.DeleteLinkRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SocialMediaDetailAppBackend.Controllers.DetailsController",
+    "Method": "DeleteDescription",
+    "RelativePath": "api/Details/deleteDescription/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SocialMediaDetailAppBackend.Controllers.DetailsController",
+    "Method": "GetFlaggedLinksWithDetails",
+    "RelativePath": "api/Details/flagged-automated-links/details/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SocialMediaDetailAppBackend.Controllers.DetailsController",
+    "Method": "GetDescriptions",
+    "RelativePath": "api/Details/getDescriptions/{userId}/{appName}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "appName",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SocialMediaDetailAppBackend.Controllers.DetailsController",
+    "Method": "SendWebhook",
+    "RelativePath": "api/Details/send-webhook",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "SocialMediaDetailAppBackend.Model.UserDecisionRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SocialMediaDetailAppBackend.Controllers.DetailsController",
+    "Method": "AddDescription",
+    "RelativePath": "api/Details/updateDescription",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "description",
+        "Type": "SocialMediaDetailAppBackend.Model.UserAppDescription",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SocialMediaDetailAppBackend.Controllers.DetailsController",
+    "Method": "UpdateReasoning",
+    "RelativePath": "api/Details/updateReasoning",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "SocialMediaDetailAppBackend.Model.UpdateReasoningRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SocialMediaDetailAppBackend.Controllers.DetailsController",
+    "Method": "updateUserAppStatus",
+    "RelativePath": "api/Details/updateUserAppStatus",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "description",
+        "Type": "SocialMediaDetailAppBackend.Model.SubmitDescription",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SocialMediaDetailAppBackend.Controllers.DetailsController",
+    "Method": "GetUserApps",
+    "RelativePath": "api/Details/userapps/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SocialMediaDetailAppBackend.Controllers.DetailsController",
     "Method": "GetUserDetailById",
     "RelativePath": "api/Details/userdetails/{userId}",
     "HttpMethod": "GET",

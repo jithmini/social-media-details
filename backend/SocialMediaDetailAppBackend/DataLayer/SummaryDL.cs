@@ -19,7 +19,7 @@ namespace SocialMediaDetailAppBackend.DataLayer
             using (var connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                var query = "SELECT user_id, full_name, title, status FROM user_details";
+                var query = "SELECT user_id, full_name, title, autostatus ,manualstatus, created_date FROM user_details";
                 using (var command = new SqlCommand(query, connection))
                 {
                     using (var reader = command.ExecuteReader())
@@ -31,7 +31,10 @@ namespace SocialMediaDetailAppBackend.DataLayer
                                 UserId = reader.GetString(0),
                                 FullName = reader.GetString(1),
                                 Title = reader.GetString(2),
-                                Status = reader.GetBoolean(3)
+                                AutoStatus = reader.GetInt32(3),
+                                ManualStatus = reader.GetBoolean(4),
+                                CreatedDate = reader.GetDateTime(5),
+                            
                             });
                         }
                     }

@@ -1,0 +1,140 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\projects\\Nikos\\social-media-details\\backend\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{6E50B8C3-A766-41DD-9F53-F9461E30258B}|SocialMediaDetailAppBackend\\SocialMediaDetailAppBackend.csproj|d:\\projects\\nikos\\social-media-details\\backend\\socialmediadetailappbackend\\datalayer\\detailsdl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6E50B8C3-A766-41DD-9F53-F9461E30258B}|SocialMediaDetailAppBackend\\SocialMediaDetailAppBackend.csproj|solutionrelative:socialmediadetailappbackend\\datalayer\\detailsdl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6E50B8C3-A766-41DD-9F53-F9461E30258B}|SocialMediaDetailAppBackend\\SocialMediaDetailAppBackend.csproj|d:\\projects\\nikos\\social-media-details\\backend\\socialmediadetailappbackend\\controllers\\detailscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6E50B8C3-A766-41DD-9F53-F9461E30258B}|SocialMediaDetailAppBackend\\SocialMediaDetailAppBackend.csproj|solutionrelative:socialmediadetailappbackend\\controllers\\detailscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6E50B8C3-A766-41DD-9F53-F9461E30258B}|SocialMediaDetailAppBackend\\SocialMediaDetailAppBackend.csproj|d:\\projects\\nikos\\social-media-details\\backend\\socialmediadetailappbackend\\model\\userdetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6E50B8C3-A766-41DD-9F53-F9461E30258B}|SocialMediaDetailAppBackend\\SocialMediaDetailAppBackend.csproj|solutionrelative:socialmediadetailappbackend\\model\\userdetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6E50B8C3-A766-41DD-9F53-F9461E30258B}|SocialMediaDetailAppBackend\\SocialMediaDetailAppBackend.csproj|d:\\projects\\nikos\\social-media-details\\backend\\socialmediadetailappbackend\\model\\webhookpayload.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6E50B8C3-A766-41DD-9F53-F9461E30258B}|SocialMediaDetailAppBackend\\SocialMediaDetailAppBackend.csproj|solutionrelative:socialmediadetailappbackend\\model\\webhookpayload.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6E50B8C3-A766-41DD-9F53-F9461E30258B}|SocialMediaDetailAppBackend\\SocialMediaDetailAppBackend.csproj|d:\\projects\\nikos\\social-media-details\\backend\\socialmediadetailappbackend\\businesslayer\\detailsbl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6E50B8C3-A766-41DD-9F53-F9461E30258B}|SocialMediaDetailAppBackend\\SocialMediaDetailAppBackend.csproj|solutionrelative:socialmediadetailappbackend\\businesslayer\\detailsbl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6E50B8C3-A766-41DD-9F53-F9461E30258B}|SocialMediaDetailAppBackend\\SocialMediaDetailAppBackend.csproj|d:\\projects\\nikos\\social-media-details\\backend\\socialmediadetailappbackend\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{6E50B8C3-A766-41DD-9F53-F9461E30258B}|SocialMediaDetailAppBackend\\SocialMediaDetailAppBackend.csproj|solutionrelative:socialmediadetailappbackend\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6E50B8C3-A766-41DD-9F53-F9461E30258B}|SocialMediaDetailAppBackend\\SocialMediaDetailAppBackend.csproj|d:\\projects\\nikos\\social-media-details\\backend\\socialmediadetailappbackend\\model\\flaggedlinksdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6E50B8C3-A766-41DD-9F53-F9461E30258B}|SocialMediaDetailAppBackend\\SocialMediaDetailAppBackend.csproj|solutionrelative:socialmediadetailappbackend\\model\\flaggedlinksdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "FlaggedLinksDto.cs",
+              "DocumentMoniker": "D:\\projects\\Nikos\\social-media-details\\backend\\SocialMediaDetailAppBackend\\Model\\FlaggedLinksDto.cs",
+              "RelativeDocumentMoniker": "SocialMediaDetailAppBackend\\Model\\FlaggedLinksDto.cs",
+              "ToolTip": "D:\\projects\\Nikos\\social-media-details\\backend\\SocialMediaDetailAppBackend\\Model\\FlaggedLinksDto.cs",
+              "RelativeToolTip": "SocialMediaDetailAppBackend\\Model\\FlaggedLinksDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-03T14:33:26.597Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "appsettings.Development.json",
+              "DocumentMoniker": "D:\\projects\\Nikos\\social-media-details\\backend\\SocialMediaDetailAppBackend\\appsettings.Development.json",
+              "RelativeDocumentMoniker": "SocialMediaDetailAppBackend\\appsettings.Development.json",
+              "ToolTip": "D:\\projects\\Nikos\\social-media-details\\backend\\SocialMediaDetailAppBackend\\appsettings.Development.json",
+              "RelativeToolTip": "SocialMediaDetailAppBackend\\appsettings.Development.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-08-04T17:07:12.815Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UserDetail.cs",
+              "DocumentMoniker": "D:\\projects\\Nikos\\social-media-details\\backend\\SocialMediaDetailAppBackend\\Model\\UserDetail.cs",
+              "RelativeDocumentMoniker": "SocialMediaDetailAppBackend\\Model\\UserDetail.cs",
+              "ToolTip": "D:\\projects\\Nikos\\social-media-details\\backend\\SocialMediaDetailAppBackend\\Model\\UserDetail.cs",
+              "RelativeToolTip": "SocialMediaDetailAppBackend\\Model\\UserDetail.cs",
+              "ViewState": "AgIAAEAAAAAAAAAAAAAkwFMAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-04T16:50:52.245Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DetailsController.cs",
+              "DocumentMoniker": "D:\\projects\\Nikos\\social-media-details\\backend\\SocialMediaDetailAppBackend\\Controllers\\DetailsController.cs",
+              "RelativeDocumentMoniker": "SocialMediaDetailAppBackend\\Controllers\\DetailsController.cs",
+              "ToolTip": "D:\\projects\\Nikos\\social-media-details\\backend\\SocialMediaDetailAppBackend\\Controllers\\DetailsController.cs",
+              "RelativeToolTip": "SocialMediaDetailAppBackend\\Controllers\\DetailsController.cs",
+              "ViewState": "AgIAAJQAAAAAAAAAAAAcwLYAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-11T08:59:08.227Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "DetailsDL.cs",
+              "DocumentMoniker": "D:\\projects\\Nikos\\social-media-details\\backend\\SocialMediaDetailAppBackend\\DataLayer\\DetailsDL.cs",
+              "RelativeDocumentMoniker": "SocialMediaDetailAppBackend\\DataLayer\\DetailsDL.cs",
+              "ToolTip": "D:\\projects\\Nikos\\social-media-details\\backend\\SocialMediaDetailAppBackend\\DataLayer\\DetailsDL.cs",
+              "RelativeToolTip": "SocialMediaDetailAppBackend\\DataLayer\\DetailsDL.cs",
+              "ViewState": "AgIAANoBAAAAAAAAAAAkwOABAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-30T02:47:51.525Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "DetailsBL.cs",
+              "DocumentMoniker": "D:\\projects\\Nikos\\social-media-details\\backend\\SocialMediaDetailAppBackend\\BusinessLayer\\DetailsBL.cs",
+              "RelativeDocumentMoniker": "SocialMediaDetailAppBackend\\BusinessLayer\\DetailsBL.cs",
+              "ToolTip": "D:\\projects\\Nikos\\social-media-details\\backend\\SocialMediaDetailAppBackend\\BusinessLayer\\DetailsBL.cs",
+              "RelativeToolTip": "SocialMediaDetailAppBackend\\BusinessLayer\\DetailsBL.cs",
+              "ViewState": "AgIAAEEAAAAAAAAAAAAuwE0AAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-24T07:07:49.259Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "WebhookPayload.cs",
+              "DocumentMoniker": "D:\\projects\\Nikos\\social-media-details\\backend\\SocialMediaDetailAppBackend\\Model\\WebhookPayload.cs",
+              "RelativeDocumentMoniker": "SocialMediaDetailAppBackend\\Model\\WebhookPayload.cs",
+              "ToolTip": "D:\\projects\\Nikos\\social-media-details\\backend\\SocialMediaDetailAppBackend\\Model\\WebhookPayload.cs",
+              "RelativeToolTip": "SocialMediaDetailAppBackend\\Model\\WebhookPayload.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAA5wBQAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-04T16:59:33.733Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

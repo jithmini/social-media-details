@@ -3,6 +3,7 @@ using Microsoft.Data.SqlClient;
 using SocialMediaDetailAppBackend.BusinessLayer;
 using SocialMediaDetailAppBackend.DataLayer;
 using SocialMediaDetailAppBackend.Model;
+using System.Net.Http;
 
 namespace SocialMediaDetailAppBackend.Controllers
 {
@@ -75,22 +76,117 @@ namespace SocialMediaDetailAppBackend.Controllers
             return success ? Ok("Status updated successfully.") : StatusCode(500, "Failed to update status.");
         }
 
-        [HttpPost("send-webhook-accept")]
-        public IActionResult SendWebhookAccept([FromBody] WebhookPayload payload)
+        //[HttpPost("send-webhook-accept")]
+        //public IActionResult SendWebhookAccept([FromBody] WebhookPayload payload)
+        //{
+        //    bool success = _detailsBL.SendWebhookAcceptAsync(payload);
+        //    return success
+        //        ? Ok("Webhook sent successfully.")
+        //        : StatusCode(500, "Failed to send webhook.");
+        //}
+
+        //[HttpPost("send-webhook-reject")]
+        //public IActionResult SendWebhookReject([FromBody] WebhookPayload payload)
+        //{
+        //    bool success = _detailsBL.SendWebhookRejectAsync(payload);
+        //    return success
+        //        ? Ok("Webhook sent successfully.")
+        //        : StatusCode(500, "Failed to send webhook.");
+        //}
+
+        
+
+        [HttpGet("automated-links/{userId}")]
+        public IActionResult GetAutomatedLinks(string userId)
         {
-            bool success = _detailsBL.SendWebhookAcceptAsync(payload);
-            return success
-                ? Ok("Webhook sent successfully.")
-                : StatusCode(500, "Failed to send webhook.");
+            try
+            {
+                var links = _detailsBL.GetAllLinks(userId);
+
+                if (links == null || links.Count == 0)
+                    return NotFound("No automated links found for the specified user.");
+
+                return Ok(links);
+            }
+            catch (Exception ex)
+            {
+                // Log error here if needed
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
         }
 
-        [HttpPost("send-webhook-reject")]
-        public IActionResult SendWebhookReject([FromBody] WebhookPayload payload)
+        [HttpGet("flagged-automated-links/details/{userId}")]
+        public IActionResult GetFlaggedLinksWithDetails(string userId)
         {
-            bool success = _detailsBL.SendWebhookRejectAsync(payload);
-            return success
-                ? Ok("Webhook sent successfully.")
-                : StatusCode(500, "Failed to send webhook.");
+            try
+            {
+                var data = _detailsBL.GetFlaggedLinksWithDetails(userId);
+
+                if (data == null || !data.Any())
+                    return NotFound("No flagged links or details found for this user.");
+
+                return Ok(data);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
         }
+
+
+
+        [HttpPost("delete-automated-link")]
+        public IActionResult DeleteAutomatedLink([FromBody] DeleteLinkRequest request)
+        {
+            if (string.IsNullOrWhiteSpace(request.UserId) || string.IsNullOrWhiteSpace(request.Link))
+            {
+                return BadRequest("UserId and Link must be provided.");
+            }
+
+            bool success = _detailsBL.DeleteAutomatedLink(request.UserId, request.Link);
+            return success ? Ok("Link deleted successfully.") : NotFound("Link not found.");
+        }
+
+        [HttpPost("updateReasoning")]
+        public IActionResult UpdateReasoning([FromBody] UpdateReasoningRequest request)
+        {
+            if (string.IsNullOrWhiteSpace(request.UserId) ||
+                string.IsNullOrWhiteSpace(request.Url) ||
+                string.IsNullOrWhiteSpace(request.Reasoning))
+            {
+                return BadRequest("All fields are required.");
+            }
+
+            bool success = _detailsBL.UpdateReasoning(request);
+            return success
+                ? Ok("Reasoning updated successfully.")
+                : NotFound("Matching record not found or update failed.");
+        }
+
+        [HttpPost("send-webhook")]
+        public async Task<IActionResult> SendWebhook([FromBody] UserDecisionRequest request)
+        {
+            if (request == null || string.IsNullOrWhiteSpace(request.Id) || string.IsNullOrWhiteSpace(request.Result))
+                return BadRequest("Invalid payload");
+
+            try
+            {
+                var result = await _detailsBL.SendWebhookAsync(request.Id, request.Result);
+
+                if (result.IsSuccess)
+                    return Ok(new { message = "Webhook sent", payload = result.Payload });
+                else if (result.NotFound)
+                    return NotFound(result.ErrorMessage);
+                else
+                    return StatusCode(500, result.ErrorMessage);
+            }
+            catch (Exception ex)
+            {
+                // Log error if needed
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
+
+
     }
 }

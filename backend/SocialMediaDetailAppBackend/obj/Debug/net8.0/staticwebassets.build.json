@@ -1,11 +1,12 @@
 {
   "Version": 1,
-  "Hash": "ctgrMOgfKSNDVHHaYELKLQmSe5YKTVr3DIBMGrVSYjY=",
+  "Hash": "LVrPvkHn8EoEgIugqDVYoB9njCbcCMgIWNao+5bI2/s=",
   "Source": "SocialMediaDetailAppBackend",
   "BasePath": "_content/SocialMediaDetailAppBackend",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [],
-  "Assets": []
+  "Assets": [],
+  "Endpoints": []
 }
